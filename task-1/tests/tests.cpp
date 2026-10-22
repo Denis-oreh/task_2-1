@@ -13,7 +13,7 @@
 
 TEST(MatrixConstructors, DefaultIsEmpty)
 {
-    Matrix m;
+    const Matrix m;
     EXPECT_EQ(m.getRows(), 0u);
     EXPECT_EQ(m.getColumns(), 0u);
     EXPECT_EQ(m.toString(), "");
@@ -21,7 +21,7 @@ TEST(MatrixConstructors, DefaultIsEmpty)
 
 TEST(MatrixConstructors, SizedMatrixIsZeroFilled)
 {
-    Matrix m(3, 4);
+    const Matrix m(3, 4);
     EXPECT_EQ(m.getRows(), 3u);
     EXPECT_EQ(m.getColumns(), 4u);
     for (size_t i = 0; i < 3; i++)
@@ -83,8 +83,8 @@ TEST(MatrixCopy, SelfAssignmentIsSafe)
 
 TEST(MatrixEquality, EqualMatrices)
 {
-    Matrix a(2, 2);
-    Matrix b(2, 2);
+    const Matrix a(2, 2);
+    const Matrix b(2, 2);
     EXPECT_TRUE(a == b);
     EXPECT_FALSE(a != b);
 }
@@ -100,8 +100,8 @@ TEST(MatrixEquality, DifferentValues)
 
 TEST(MatrixEquality, DifferentSizes)
 {
-    Matrix a(2, 2);
-    Matrix b(3, 3);
+    const Matrix a(2, 2);
+    const Matrix b(3, 3);
     EXPECT_FALSE(a == b);
 }
 
@@ -151,7 +151,7 @@ TEST(RandomGeneratorTest, ValuesInRange)
     const RandomGenerator gen(-10, 10);
     for (int i = 0; i < 1000; i++)
     {
-        int v = gen.generate();
+        const int v = gen.generate();
         EXPECT_GE(v, -10);
         EXPECT_LE(v, 10);
     }
@@ -162,7 +162,7 @@ TEST(RandomGeneratorTest, SwapsMinMaxIfReversed)
     const RandomGenerator gen(10, -10);
     for (int i = 0; i < 100; i++)
     {
-        int v = gen.generate();
+        const int v = gen.generate();
         EXPECT_GE(v, -10);
         EXPECT_LE(v, 10);
     }
@@ -269,7 +269,7 @@ TEST(Task1Test, OriginalIsNotModified)
 
 TEST(Task1Test, EmptyMatrixReturnsEmpty)
 {
-    Matrix m;
+    const Matrix m;
     const RandomGenerator dummyGen(0, 0);
     Task1_Exercise task(m, dummyGen);
     const Matrix result = task.solve();
@@ -377,7 +377,7 @@ TEST(Task2Test, OriginalIsNotModified)
 
 TEST(Task2Test, EmptyMatrixReturnsEmpty)
 {
-    Matrix m;
+    const Matrix m;
     const RandomGenerator dummyGen(0, 0);
     Task2_Exercise task(m, dummyGen);
     const Matrix result = task.solve();
