@@ -191,7 +191,7 @@ TEST(Task1Test, SimpleCase)
             m[i][j] = data[i][j];
 
     RandomGenerator dummyGen(0, 0);
-    Task1Exercise task(m, dummyGen);
+    Task1_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result[0][0], 1);
@@ -213,7 +213,7 @@ TEST(Task1Test, FirstMaxInRowIsReplaced)
     m[0][0] = 7; m[0][1] = 1; m[0][2] = 7; m[0][3] = 2;
 
     RandomGenerator dummyGen(0, 0);
-    Task1Exercise task(m, dummyGen);
+    Task1_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result[0][0], 0);
@@ -228,7 +228,7 @@ TEST(Task1Test, NegativeMaximum)
     m[0][0] = -5; m[0][1] = -1; m[0][2] = -3;
 
     RandomGenerator dummyGen(0, 0);
-    Task1Exercise task(m, dummyGen);
+    Task1_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result[0][0], -5);
@@ -244,7 +244,7 @@ TEST(Task1Test, SingleColumn)
     m[2][0] = 2;
 
     RandomGenerator dummyGen(0, 0);
-    Task1Exercise task(m, dummyGen);
+    Task1_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result[0][0], 0);
@@ -259,7 +259,7 @@ TEST(Task1Test, OriginalIsNotModified)
     m[1][0] = 3; m[1][1] = 4;
 
     RandomGenerator dummyGen(0, 0);
-    Task1Exercise task(m, dummyGen);
+    Task1_Exercise task(m, dummyGen);
     task.solve();
 
     EXPECT_EQ(m[0][1], 2);
@@ -270,7 +270,7 @@ TEST(Task1Test, EmptyMatrixReturnsEmpty)
 {
     Matrix m;
     RandomGenerator dummyGen(0, 0);
-    Task1Exercise task(m, dummyGen);
+    Task1_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 0u);
@@ -286,7 +286,7 @@ TEST(Task2Test, SimpleCase)
     m[2][0] = 6; m[2][1] = 8;
 
     RandomGenerator dummyGen(0, 0);
-    Task2Exercise task(m, dummyGen);
+    Task2_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 5u);
@@ -306,7 +306,7 @@ TEST(Task2Test, NoRowsInserted)
     m[1][0] = 2; m[1][1] = 4;
 
     RandomGenerator dummyGen(0, 0);
-    Task2Exercise task(m, dummyGen);
+    Task2_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 2u);
@@ -321,7 +321,7 @@ TEST(Task2Test, AllRowsInserted)
     m[1][0] = 9; m[1][1] = 2;
 
     RandomGenerator dummyGen(0, 0);
-    Task2Exercise task(m, dummyGen);
+    Task2_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 4u);
@@ -337,7 +337,7 @@ TEST(Task2Test, ZeroIsDivisibleByThree)
     m[0][0] = 0; m[0][1] = 5;
 
     RandomGenerator dummyGen(0, 0);
-    Task2Exercise task(m, dummyGen);
+    Task2_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 2u);
@@ -351,7 +351,7 @@ TEST(Task2Test, NegativeDivisibleByThree)
     m[0][0] = -6; m[0][1] = 7;
 
     RandomGenerator dummyGen(0, 0);
-    Task2Exercise task(m, dummyGen);
+    Task2_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 2u);
@@ -366,7 +366,7 @@ TEST(Task2Test, OriginalIsNotModified)
     m[1][0] = 1; m[1][1] = 2;
 
     RandomGenerator dummyGen(0, 0);
-    Task2Exercise task(m, dummyGen);
+    Task2_Exercise task(m, dummyGen);
     task.solve();
 
     EXPECT_EQ(m.getRows(), 2u);
@@ -378,7 +378,7 @@ TEST(Task2Test, EmptyMatrixReturnsEmpty)
 {
     Matrix m;
     RandomGenerator dummyGen(0, 0);
-    Task2Exercise task(m, dummyGen);
+    Task2_Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 0u);
