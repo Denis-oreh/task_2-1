@@ -1,10 +1,10 @@
 #include <vector>
 
-#include "../include/Task2Exercise.h"
+#include "../include/Task2_Exercise.h"
 
-Task2Exercise::Task2Exercise(Matrix& src, const Generator& gen) : Exercise(src, gen) {}
+Task2_Exercise::Task2_Exercise(Matrix& src, const Generator& gen) : Exercise(src, gen) {}
 
-Matrix Task2Exercise::solve()
+Matrix Task2_Exercise::solve()
 {
 	const size_t rows = source.getRows();
 	const size_t columns = source.getColumns();
