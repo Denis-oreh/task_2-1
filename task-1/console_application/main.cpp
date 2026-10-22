@@ -98,13 +98,13 @@ std::unique_ptr<Generator> chooseGenerator(const char* message)
 	{
 		case random_fill:
 			{
-			int minVal = getInt("Введите минимум диапазона:");
-			int maxVal = getInt("Введите максимум диапазона:");
+			const int minVal = getInt("Введите минимум диапазона:");
+			const int maxVal = getInt("Введите максимум диапазона:");
 			return std::make_unique<RandomGenerator>(minVal, maxVal);
 		}
 		case const_fill:
 			{
-			int value = getInt("Введите значение константы:");
+			const int value = getInt("Введите значение константы:");
 			return std::make_unique<ConstGenerator>(value);
 		}
 		case input_fill:
