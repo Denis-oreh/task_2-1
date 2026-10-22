@@ -1,6 +1,6 @@
 #include "../include/Task1Exercise.h"
 
-Task1Exercise::Task1Exercise(Matrix& src, Generator& gen) : Exercise(src, gen) {}
+Task1Exercise::Task1Exercise(Matrix& src, const Generator& gen) : Exercise(src, gen) {}
 
 Matrix Task1Exercise::solve()
 {
@@ -13,7 +13,7 @@ Matrix Task1Exercise::solve()
 
 	for (size_t i = 0; i < rows; i++)
 	{
-		// Íàõîäèì èíäåêñ ïåðâîãî ìàêñèìàëüíîãî ýëåìåíòà â ñòðîêå
+		// ÃÃ ÃµÃ®Ã¤Ã¨Ã¬ Ã¨Ã­Ã¤Ã¥ÃªÃ± Ã¯Ã¥Ã°Ã¢Ã®Ã£Ã® Ã¬Ã ÃªÃ±Ã¨Ã¬Ã Ã«Ã¼Ã­Ã®Ã£Ã® Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã²Ã  Ã¢ Ã±Ã²Ã°Ã®ÃªÃ¥
 		size_t maxCol = 0;
 		int maxValue = result[i][0];
 		for (size_t j = 1; j < columns; j++)
@@ -24,7 +24,7 @@ Matrix Task1Exercise::solve()
 				maxCol = j;
 			}
 		}
-		// Çàìåíÿåì ìàêñèìàëüíûé ýëåìåíò ñòðîêè íóëåì
+		// Ã‡Ã Ã¬Ã¥Ã­Ã¿Ã¥Ã¬ Ã¬Ã ÃªÃ±Ã¨Ã¬Ã Ã«Ã¼Ã­Ã»Ã© Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã² Ã±Ã²Ã°Ã®ÃªÃ¨ Ã­Ã³Ã«Ã¥Ã¬
 		result[i][maxCol] = 0;
 	}
 
