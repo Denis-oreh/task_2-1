@@ -2,7 +2,7 @@
 
 ConstGenerator::ConstGenerator(int value) : const_value(value) {}
 
-int ConstGenerator::generate()
+int ConstGenerator::generate() const
 {
 	return const_value;
 }
