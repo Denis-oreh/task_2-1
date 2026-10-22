@@ -1,8 +1,8 @@
 #include "../include/Task1Exercise.h"
 
-Task1Exercise::Task1Exercise(Matrix& src, const Generator& gen) : Exercise(src, gen) {}
+Task1_Exercise::Task1_Exercise(Matrix& src, const Generator& gen) : Exercise(src, gen) {}
 
-Matrix Task1Exercise::solve()
+Matrix Task1_Exercise::solve()
 {
 	Matrix result(source);
 
