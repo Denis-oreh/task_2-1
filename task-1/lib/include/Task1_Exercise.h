@@ -6,7 +6,7 @@
  * @brief Класс Task1Exercise абстрактного класса Exercise
  * Задание: заменить максимальный элемент каждой строки нулем
  */
-class Task1Exercise : public Exercise
+class Task1_Exercise : public Exercise
 {
 public:
 	/**
@@ -14,12 +14,12 @@ public:
 	 * @param src - ссылка на матрицу
 	 * @param gen - ссылка на генератор
 	 */
-	Task1Exercise(Matrix& src, const Generator& gen);
+	Task1_Exercise(Matrix& src, const Generator& gen);
 
 	/**
 	 * @brief Перегруженный деструктор
 	 */
-	~Task1Exercise() override = default;
+	~Task1_Exercise() override = default;
 
 	/**
 	 * @brief Выполнить задание 1
