@@ -11,7 +11,6 @@ Matrix Task2Exercise::solve()
 
 	if (rows == 0 || columns == 0) { return Matrix(); }
 
-	// Îïðåäåëÿåì, ïåðåä êàêèìè ñòðîêàìè íóæíî âñòàâèòü ñòðîêó èç íóëåé
 	std::vector<bool> insertBefore(rows, false);
 	for (size_t i = 0; i < rows; i++)
 	{
@@ -21,7 +20,6 @@ Matrix Task2Exercise::solve()
 		}
 	}
 
-	// Ñ÷èòàåì èòîãîâîå êîëè÷åñòâî ñòðîê
 	size_t newRows = rows;
 	for (size_t i = 0; i < rows; i++)
 	{
@@ -38,7 +36,6 @@ Matrix Task2Exercise::solve()
 	{
 		if (insertBefore[i])
 		{
-			// Âñòàâëÿåì ñòðîêó èç íóëåé (êîíñòðóêòîð óæå çàïîëíèë íóëÿìè)
 			r++;
 		}
 		for (size_t c = 0; c < columns; c++)
