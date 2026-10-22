@@ -1,4 +1,4 @@
-#include "../include/Task1Exercise.h"
+#include "../include/Task1_Exercise.h"
 
 Task1_Exercise::Task1_Exercise(Matrix& src, const Generator& gen) : Exercise(src, gen) {}
 
