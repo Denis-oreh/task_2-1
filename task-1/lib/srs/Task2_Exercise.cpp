@@ -4,7 +4,7 @@
 
 Task2_Exercise::Task2_Exercise(const Matrix& src, const Generator& gen) : Exercise(src, gen) {}
 
-Matrix Task2_Exercise::solve()
+Matrix Task2_Exercise::solve() const
 {
 	const size_t rows = source.getRows();
 	const size_t columns = source.getColumns();
