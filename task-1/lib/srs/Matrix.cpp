@@ -117,7 +117,7 @@ std::istream& operator>>(std::istream& is, Matrix& M)
 	return is;
 }
 
-void Matrix::fillArray(Generator& generator)
+void Matrix::fillArray(const Generator& generator)
 {
 	for (size_t i = 0; i < rows; i++) {
 		for (size_t j = 0; j < columns; j++)
