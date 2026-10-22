@@ -12,7 +12,7 @@ protected:
 	/**
 	 * @brief ссылка на исходную матрицу
 	 */
-	Matrix& source;
+	const Matrix& source;
 
 	/**
 	 * @brief Ссылка на генератор значений
