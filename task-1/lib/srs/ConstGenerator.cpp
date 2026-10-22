@@ -1,6 +1,6 @@
 #include "../include/ConstGenerator.h"
 
-ConstGenerator::ConstGenerator(int value) : const_value(value) {}
+ConstGenerator::ConstGenerator(const int value) : const_value(value) {}
 
 int ConstGenerator::generate() const
 {
