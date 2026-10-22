@@ -46,5 +46,5 @@ public:
 	 * @brief Генерация случайного числа
 	 * @return сгенерированное число
 	 */
-	int generate() override;
+	int generate() const override;
 };
