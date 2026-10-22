@@ -44,7 +44,7 @@ Generator* chooseGenerator(const char* message);
  * @param matrix - ссылка на матрицу
  * @param generator - ссылка на генератор
  */
-void runTask(Matrix& matrix, Generator& generator);
+void runTask(Matrix& matrix, const Generator& generator);
 
 /**
  * @brief Точка входа в программу
@@ -120,7 +120,7 @@ Generator* chooseGenerator(const char* message)
 	}
 }
 
-void runTask(Matrix& matrix, Generator& generator)
+void runTask(Matrix& matrix, const Generator& generator)
 {
 	std::cout << "Выберите задание:\n"
 		<< task1_choice << " - Задание 1. Заменить максимальный элемент каждой строки нулем\n"
