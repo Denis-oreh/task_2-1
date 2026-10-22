@@ -1,3 +1,3 @@
 #include "../include/Exercise.h"
 
-Exercise::Exercise(Matrix& src, Generator& gen) : source(src), generator(gen) {}
+Exercise::Exercise(Matrix& src, const Generator& gen) : source(src), generator(gen) {}
