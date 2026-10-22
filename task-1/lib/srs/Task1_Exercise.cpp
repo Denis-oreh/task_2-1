@@ -13,7 +13,6 @@ Matrix Task1Exercise::solve()
 
 	for (size_t i = 0; i < rows; i++)
 	{
-		// Íàõîäèì èíäåêñ ïåðâîãî ìàêñèìàëüíîãî ýëåìåíòà â ñòðîêå
 		size_t maxCol = 0;
 		int maxValue = result[i][0];
 		for (size_t j = 1; j < columns; j++)
@@ -24,7 +23,6 @@ Matrix Task1Exercise::solve()
 				maxCol = j;
 			}
 		}
-		// Çàìåíÿåì ìàêñèìàëüíûé ýëåìåíò ñòðîêè íóëåì
 		result[i][maxCol] = 0;
 	}
 
