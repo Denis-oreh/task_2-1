@@ -1,0 +1,52 @@
+#include <vector>
+
+#include "../include/Task2Exercise.h"
+
+Task2Exercise::Task2Exercise(Matrix& src, Generator& gen) : Exercise(src, gen) {}
+
+Matrix Task2Exercise::solve()
+{
+	const size_t rows = source.getRows();
+	const size_t columns = source.getColumns();
+
+	if (rows == 0 || columns == 0) { return Matrix(); }
+
+	// Определяем, перед какими строками нужно вставить строку из нулей
+	std::vector<bool> insertBefore(rows, false);
+	for (size_t i = 0; i < rows; i++)
+	{
+		if (source[i][0] % 3 == 0)
+		{
+			insertBefore[i] = true;
+		}
+	}
+
+	// Считаем итоговое количество строк
+	size_t newRows = rows;
+	for (size_t i = 0; i < rows; i++)
+	{
+		if (insertBefore[i])
+		{
+			newRows++;
+		}
+	}
+
+	Matrix result(newRows, columns);
+
+	size_t r = 0;
+	for (size_t i = 0; i < rows; i++)
+	{
+		if (insertBefore[i])
+		{
+			// Вставляем строку из нулей (конструктор уже заполнил нулями)
+			r++;
+		}
+		for (size_t c = 0; c < columns; c++)
+		{
+			result[r][c] = source[i][c];
+		}
+		r++;
+	}
+
+	return result;
+}
