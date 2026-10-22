@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <memory>
 
 #include "../lib/include/Matrix.h"
 #include "../lib/include/RandomGenerator.h"
@@ -35,14 +36,14 @@ int getInt(const char* message);
 /**
  * @brief Функция выбора генератора
  * @param message - сообщение
- * @return указатель на выбранный генератор
+ * @return умный указатель на выбранный генератор
  */
-Generator* chooseGenerator(const char* message);
+std::unique_ptr<Generator> chooseGenerator(const char* message);
 
 /**
  * @brief Функция выбора задания
  * @param matrix - ссылка на матрицу
- * @param generator - ссылка на генератор
+ * @param generator - константная ссылка на генератор
  */
 void runTask(Matrix& matrix, const Generator& generator);
 
@@ -50,21 +51,18 @@ void runTask(Matrix& matrix, const Generator& generator);
  * @brief Точка входа в программу
  * @return 0, если программа выполнена успешно
  */
-int main(void)
-{
+int main(void) {
 	const size_t rows = getPos("Введите количество строк:");
 	const size_t columns = getPos("Введите количество столбцов:");
 
 	Matrix matrix(rows, columns);
-
-	Generator* generator = chooseGenerator("Выберите тип заполнения массива:");
+	
+	auto generator = chooseGenerator("Выберите тип заполнения массива:");
 	matrix.fillArray(*generator);
 
 	std::cout << "Полученная матрица:\n" << matrix.toString() << std::endl;
 
 	runTask(matrix, *generator);
-
-	delete generator;
 	return 0;
 }
 
@@ -89,7 +87,7 @@ int getInt(const char* message)
 	std::exit(1);
 }
 
-Generator* chooseGenerator(const char* message)
+std::unique_ptr<Generator> chooseGenerator(const char* message)
 {
 	std::cout << message << std::endl;
 	std::cout << random_fill << " - случайными числами\n"
@@ -98,25 +96,26 @@ Generator* chooseGenerator(const char* message)
 	int var = getInt("");
 	switch (var)
 	{
-	case random_fill:
-	{
-		int minVal = getInt("Введите минимум диапазона:");
-		int maxVal = getInt("Введите максимум диапазона:");
-		return new RandomGenerator(minVal, maxVal);
-	}
-	case const_fill:
-	{
-		int value = getInt("Введите значение константы:");
-		return new ConstGenerator(value);
-	}
-	case input_fill:
-	{
-		std::cout << "Введите значения массива:" << std::endl;
-		return new InputGenerator(std::cin);
-	}
-	default:
-		std::cerr << "Некорректный выбор" << std::endl;
-		std::exit(1);
+		case random_fill:
+			{
+			int minVal = getInt("Введите минимум диапазона:");
+			int maxVal = getInt("Введите максимум диапазона:");
+			// Используем std::make_unique вместо new
+			return std::make_unique<RandomGenerator>(minVal, maxVal);
+		}
+		case const_fill:
+			{
+			int value = getInt("Введите значение константы:");
+			return std::make_unique<ConstGenerator>(value);
+		}
+		case input_fill:
+			{
+			std::cout << "Введите значения массива:" << std::endl;
+			return std::make_unique<InputGenerator>(std::cin);
+		}
+		default:
+			std::cerr << "Некорректный выбор" << std::endl;
+			std::exit(1);
 	}
 }
 
@@ -129,22 +128,22 @@ void runTask(Matrix& matrix, const Generator& generator)
 
 	switch (var)
 	{
-	case task1_choice: 
-	{
-		Task1Exercise task(matrix, generator);
-		Matrix result = task.solve();
-		std::cout << "Результат:\n" << result.toString() << std::endl;
-		break;
-	}
-	case task2_choice:
-	{
-		Task2Exercise task(matrix, generator);
-		Matrix result = task.solve();
-		std::cout << "Результат:\n" << result.toString() << std::endl;
-		break;
-	}
-	default:
-		std::cerr << "Некорректный выбор" << std::endl;
-		std::exit(1);
+		case task1_choice:
+			{
+			Task1Exercise task(matrix, generator);
+			Matrix result = task.solve();
+			std::cout << "Результат:\n" << result.toString() << std::endl;
+			break;
+		}
+		case task2_choice:
+			{
+			Task2Exercise task(matrix, generator);
+			Matrix result = task.solve();
+			std::cout << "Результат:\n" << result.toString() << std::endl;
+			break;
+		}
+		default:
+			std::cerr << "Некорректный выбор" << std::endl;
+			std::exit(1);
 	}
 }
