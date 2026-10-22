@@ -379,7 +379,7 @@ TEST(Task2Test, EmptyMatrixReturnsEmpty)
     Matrix m;
     const RandomGenerator dummyGen(0, 0);
     Task2_Exercise task(m, dummyGen);
-    conts Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 0u);
     EXPECT_EQ(result.getColumns(), 0u);
