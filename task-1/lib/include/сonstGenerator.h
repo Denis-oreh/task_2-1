@@ -28,5 +28,5 @@ public:
 	 * @brief Возвращает значение константы
 	 * @return значение, заданное в конструкторе
 	 */
-	int generate() override;
+	int generate() const override;
 };
