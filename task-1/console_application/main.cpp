@@ -100,7 +100,6 @@ std::unique_ptr<Generator> chooseGenerator(const char* message)
 			{
 			int minVal = getInt("Введите минимум диапазона:");
 			int maxVal = getInt("Введите максимум диапазона:");
-			// Используем std::make_unique вместо new
 			return std::make_unique<RandomGenerator>(minVal, maxVal);
 		}
 		case const_fill:
@@ -130,14 +129,14 @@ void runTask(Matrix& matrix, const Generator& generator)
 	{
 		case task1_choice:
 			{
-			Task1Exercise task(matrix, generator);
+			Task1_Exercise task(matrix, generator);
 			Matrix result = task.solve();
 			std::cout << "Результат:\n" << result.toString() << std::endl;
 			break;
 		}
 		case task2_choice:
 			{
-			Task2Exercise task(matrix, generator);
+			Task2_Exercise task(matrix, generator);
 			Matrix result = task.solve();
 			std::cout << "Результат:\n" << result.toString() << std::endl;
 			break;
