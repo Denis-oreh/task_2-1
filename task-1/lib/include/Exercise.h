@@ -12,7 +12,7 @@ protected:
 	/**
 	 * @brief ссылка на исходную матрицу
 	 */
-	Matrix& source;
+	const Matrix& source;
 
 	/**
 	 * @brief Ссылка на генератор значений
@@ -24,7 +24,7 @@ public:
 	 * @param src - ссылка на матрицу
 	 * @param gen - ссылка на генератор
 	 */
-	Exercise(Matrix& src, const Generator& gen);
+	Exercise(const Matrix& src, const Generator& gen);
 
 	/**
 	 * @brief Виртуальный деструктор
@@ -35,5 +35,5 @@ public:
 	 * @brief Виртуальный метод решения задания
 	 * @return новая матрица - результат решения задания
 	 */
-	virtual Matrix solve() = 0;
+	virtual Matrix solve() const = 0;
 };
