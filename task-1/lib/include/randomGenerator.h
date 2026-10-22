@@ -23,12 +23,12 @@ private:
 	/**
 	 * @brief Движок генерации псевдослучайных чисел
 	 */
-	std::mt19937 engine;
+	mutable std::mt19937 engine;
 
 	/**
 	 * @brief Распределение для движка
 	 */
-	std::uniform_int_distribution<int> distribution;
+	mutable std::uniform_int_distribution<int> distribution;
 public:
 	/**
 	 * @brief Конструктор
