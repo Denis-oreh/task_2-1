@@ -4,7 +4,7 @@
 
 InputGenerator::InputGenerator(std::istream& input_value) : input(input_value) {}
 
-int InputGenerator::generate()
+int InputGenerator::generate() const
 {
 	int value = 0;
 	input >> value;
