@@ -13,7 +13,7 @@ private:
 	/**
 	 * @brief поток ввода
 	 */
-	std::istream& input;
+	mutable std::istream& input;
 
 public:
 	/**
@@ -31,5 +31,5 @@ public:
 	 * @brief Прочитать число из потока
 	 * @return прочитанное число, либо 0 при ошибке
 	 */
-	int generate() override;
+	int generate() const override;
 };
