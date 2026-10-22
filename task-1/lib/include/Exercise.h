@@ -17,14 +17,14 @@ protected:
 	/**
 	 * @brief Ссылка на генератор значений
 	 */
-	Generator& generator;
+	const Generator& generator;
 public:
 	/**
 	 * @brief Конструктор
 	 * @param src - ссылка на матрицу
 	 * @param gen - ссылка на генератор
 	 */
-	Exercise(Matrix& src, Generator& gen);
+	Exercise(Matrix& src, const Generator& gen);
 
 	/**
 	 * @brief Виртуальный деструктор
