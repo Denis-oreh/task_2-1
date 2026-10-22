@@ -7,8 +7,8 @@
 #include "../lib/include/ConstGenerator.h"
 #include "../lib/include/RandomGenerator.h"
 #include "../lib/include/InputGenerator.h"
-#include "../lib/include/Task1Exercise.h"
-#include "../lib/include/Task2Exercise.h"
+#include "../lib/include/Task1_Exercise.h"
+#include "../lib/include/Task2_Exercise.h"
 
 TEST(MatrixConstructors, DefaultIsEmpty)
 {
