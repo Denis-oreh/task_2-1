@@ -15,7 +15,7 @@ public:
 	 * @param src - ссылка на матрицу
 	 * @param gen - ссылка на генератор
 	 */
-	Task2Exercise(Matrix& src, Generator& gen);
+	Task2Exercise(Matrix& src, const Generator& gen);
 
 	/**
 	 * @brief Перегруженный деструктор
