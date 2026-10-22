@@ -57,7 +57,7 @@ int main(void) {
 
 	Matrix matrix(rows, columns);
 	
-	auto generator = chooseGenerator("Выберите тип заполнения массива:");
+	const auto generator = chooseGenerator("Выберите тип заполнения массива:");
 	matrix.fillArray(*generator);
 
 	std::cout << "Полученная матрица:\n" << matrix.toString() << std::endl;
@@ -93,7 +93,7 @@ std::unique_ptr<Generator> chooseGenerator(const char* message)
 	std::cout << random_fill << " - случайными числами\n"
 		<< const_fill << " - одинаковым числом (константой)\n"
 		<< input_fill << " - ввод с клавиатуры\n" << std::endl;
-	int var = getInt("");
+	const int var = getInt("");
 	switch (var)
 	{
 		case random_fill:
@@ -130,14 +130,14 @@ void runTask(Matrix& matrix, const Generator& generator)
 		case task1_choice:
 			{
 			Task1_Exercise task(matrix, generator);
-			Matrix result = task.solve();
+			const Matrix result = task.solve();
 			std::cout << "Результат:\n" << result.toString() << std::endl;
 			break;
 		}
 		case task2_choice:
 			{
 			Task2_Exercise task(matrix, generator);
-			Matrix result = task.solve();
+			const Matrix result = task.solve();
 			std::cout << "Результат:\n" << result.toString() << std::endl;
 			break;
 		}
