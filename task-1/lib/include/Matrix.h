@@ -1,11 +1,12 @@
 #pragma once
 #include <iosfwd>
 #include <string>
+#include <vector>
 
 #include "Generator.h"
 
 /**
- * @brief Класс Matrix(массив)
+ * @brief Класс Matrix(массив) на std::vector
  */
 class Matrix
 {
@@ -21,9 +22,9 @@ private:
 	size_t columns;
 
 	/**
-	 * @brief указатель на массив
+	 * @brief двумерный массив на std::vector
 	 */
-	int** arr;
+	std::vector<std::vector<int>> arr;
 public:
 	/**
 	 * @brief Конструктор по умолчанию
@@ -38,31 +39,31 @@ public:
 	Matrix(const size_t r, const size_t c);
 
 	/**
-	 * @brief Конструктор копирования
+	 * @brief Конструктор копирования (глубокое копирование обеспечивает vector)
 	 * @param other - ссылка на другую матрицу
 	 */
-	Matrix(const Matrix& other);
+	Matrix(const Matrix& other) = default;
 
 	/**
-	 * @brief Конструктор перемещения
+	 * @brief Конструктор перемещения (обнуляет rows/columns у источника)
 	 * @param other - ссылка на другую (временную) матрицу
 	 */
 	Matrix(Matrix&& other) noexcept;
 
 	/**
-	 * @brief Деструктор
+	 * @brief Деструктор (RAII: vector сам освобождает память)
 	 */
-	~Matrix();
+	~Matrix() = default;
 
 	/**
 	 * @brief оператор присваивания копированием
 	 * @param other - ссылка на другую матрицу
 	 * @return ссылку на скопированную матрицу
 	 */
-	Matrix& operator=(const Matrix& other);
+	Matrix& operator=(const Matrix& other) = default;
 
 	/**
-	 * @brief оператор присваивания перемещением
+	 * @brief оператор присваивания перемещением (обнуляет rows/columns у источника)
 	 * @param other - ссылка на другую (временную) матрицу
 	 * @return ссылку на перемещённую матрицу
 	 */
