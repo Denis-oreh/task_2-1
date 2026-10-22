@@ -12,7 +12,7 @@ RandomGenerator::RandomGenerator(int minVal, int maxVal)
 	distribution = std::uniform_int_distribution<int>(minValue, maxValue);
 }
 
-int RandomGenerator::generate()
+int RandomGenerator::generate() const
 {
 	return distribution(engine);
 }
