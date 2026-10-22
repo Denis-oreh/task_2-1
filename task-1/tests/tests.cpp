@@ -331,7 +331,7 @@ TEST(Task2Test, AllRowsInserted)
     EXPECT_EQ(result[3][0], 9);
 }
 
-TEST(Task2Test, ZeroIsDivisibleByThree)\
+TEST(Task2Test, ZeroIsDivisibleByThree)
 {
     Matrix m(1, 2);
     m[0][0] = 0; m[0][1] = 5;
@@ -369,7 +369,6 @@ TEST(Task2Test, OriginalIsNotModified)
     Task2Exercise task(m, dummyGen);
     task.solve();
 
-    // исходная матрица не должна измениться
     EXPECT_EQ(m.getRows(), 2u);
     EXPECT_EQ(m[0][0], 3);
     EXPECT_EQ(m[0][1], 1);
