@@ -3,7 +3,7 @@
 #include "Exercise.h"
 
 /**
- * @brief Класс Task1Exercise абстрактного класса Exercise
+ * @brief Класс Task1_Exercise абстрактного класса Exercise
  * Задание: заменить максимальный элемент каждой строки нулем
  */
 class Task1_Exercise : public Exercise
