@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <string>
+#include <utility>
 
 #include "../lib/include/Matrix.h"
 #include "../lib/include/ConstGenerator.h"
