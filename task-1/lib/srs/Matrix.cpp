@@ -2,78 +2,34 @@
 #include <utility>
 #include "../include/Matrix.h"
 
-Matrix::Matrix() : rows(0), columns(0), arr(nullptr) {}
+Matrix::Matrix() : rows(0), columns(0), arr() {}
 
-Matrix::Matrix(const size_t r, const size_t c) : rows(r), columns(c), arr(nullptr)
+Matrix::Matrix(const size_t r, const size_t c)
+	: rows(r), columns(c), arr(r, std::vector<int>(c, 0))
 {
 	if (rows == 0 || columns == 0)
 	{
-		return;
-	}
-	arr = new int* [rows];
-	for (size_t i = 0; i < rows; i++)
-	{
-		arr[i] = new int[columns]();
+		rows = 0;
+		columns = 0;
+		arr.clear();
 	}
 }
 
-Matrix::Matrix(const Matrix& other) : rows(other.rows), columns(other.columns), arr(nullptr)
-{
-	if (rows == 0 || columns == 0)
-	{
-		return;
-	}
-	this->arr = new int* [rows];
-	for (size_t i = 0; i < rows; i++)
-	{
-		this->arr[i] = new int[columns];
-		for (size_t j = 0; j < columns; j++)
-		{
-			this->arr[i][j] = other.arr[i][j];
-		}
-	}
-}
-
-Matrix::Matrix(Matrix&& other) noexcept : rows(other.rows), columns(other.columns), arr(other.arr)
+Matrix::Matrix(Matrix&& other) noexcept
+	: rows(other.rows), columns(other.columns), arr(std::move(other.arr))
 {
 	other.rows = 0;
 	other.columns = 0;
-	other.arr = nullptr;
-}
-
-Matrix::~Matrix()
-{
-	if (arr != nullptr)
-	{
-		for (size_t i = 0; i < rows; i++)
-		{
-			delete[] arr[i];
-		}
-		delete[] arr;
-	}
-}
-
-Matrix& Matrix::operator=(const Matrix& other)
-{
-	if (this == &other) return *this;
-	Matrix temp(other);
-
-	std::swap(rows, temp.rows);
-	std::swap(columns, temp.columns);
-	std::swap(arr, temp.arr);
-
-	return *this;
 }
 
 Matrix& Matrix::operator=(Matrix&& other) noexcept
 {
 	if (this == &other) return *this;
-	Matrix temp(std::move(other));
-
-	std::swap(rows, temp.rows);
-	std::swap(columns, temp.columns);
-	std::swap(arr, temp.arr);
-
+	rows = other.rows;
+	columns = other.columns;
+	arr = std::move(other.arr);
+	other.rows = 0;
+	other.columns = 0;
 	return *this;
 }
 
@@ -83,12 +39,12 @@ size_t Matrix::getColumns() const noexcept { return columns; }
 
 int* Matrix::operator[](size_t row_index)
 {
-	return arr[row_index];
+	return arr[row_index].data();
 }
 
 const int* Matrix::operator[](const size_t row_index) const
 {
-	return arr[row_index];
+	return arr[row_index].data();
 }
 
 std::string Matrix::toString() const
@@ -118,16 +74,7 @@ std::string Matrix::toString() const
 
 bool Matrix::operator==(const Matrix& other) const
 {
-	if (rows != other.rows) return false;
-	if (columns != other.columns) return false;
-	for (size_t i = 0; i < rows; i++)
-	{
-		for (size_t j = 0; j < columns; j++)
-		{
-			if (arr[i][j] != other.arr[i][j]) return false;
-		}
-	}
-	return true;
+	return rows == other.rows && columns == other.columns && arr == other.arr;
 }
 
 bool Matrix::operator!=(const Matrix& other) const
