@@ -2,7 +2,7 @@
 
 Task1_Exercise::Task1_Exercise(const Matrix& src, const Generator& gen) : Exercise(src, gen) {}
 
-Matrix Task1_Exercise::solve()
+Matrix Task1_Exercise::solve() const
 {
 	Matrix result(source);
 
