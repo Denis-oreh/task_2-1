@@ -10,7 +10,6 @@
 #include "../lib/include/Task1Exercise.h"
 #include "../lib/include/Task2Exercise.h"
 
-// Matrix: конструкторы
 TEST(MatrixConstructors, DefaultIsEmpty)
 {
     Matrix m;
@@ -33,7 +32,6 @@ TEST(MatrixConstructors, SizedMatrixIsZeroFilled)
     }
 }
 
-// Matrix: копирование и перемещение
 
 TEST(MatrixCopy, CopyIsDeep)
 {
@@ -41,10 +39,10 @@ TEST(MatrixCopy, CopyIsDeep)
     a[0][0] = 1; a[0][1] = 2;
     a[1][0] = 3; a[1][1] = 4;
 
-    Matrix b = a;          // конструктор копирования
+    Matrix b = a;
     b[0][0] = 999;
 
-    EXPECT_EQ(a[0][0], 1);  // оригинал не изменился
+    EXPECT_EQ(a[0][0], 1);
     EXPECT_EQ(b[0][0], 999);
 }
 
@@ -55,7 +53,7 @@ TEST(MatrixCopy, CopyAssignmentIsDeep)
     a[1][0] = 3; a[1][1] = 4;
 
     Matrix b;
-    b = a;                 // оператор присваивания копированием
+    b = a;
     b[1][1] = 777;
 
     EXPECT_EQ(a[1][1], 4);
@@ -77,11 +75,10 @@ TEST(MatrixCopy, SelfAssignmentIsSafe)
 {
     Matrix a(2, 2);
     a[0][0] = 5;
-    a = a;                 // не должно сломаться =)
+    a = a;
     EXPECT_EQ(a[0][0], 5);
 }
 
-// Matrix: операторы сравнения
 
 TEST(MatrixEquality, EqualMatrices)
 {
@@ -107,7 +104,6 @@ TEST(MatrixEquality, DifferentSizes)
     EXPECT_FALSE(a == b);
 }
 
-// Matrix: ввод/вывод
 
 TEST(MatrixIO, OutputFormat)
 {
@@ -140,7 +136,6 @@ TEST(MatrixIO, InputFailsOnBadData)
     EXPECT_FALSE(is);
 }
 
-// Generators
 
 TEST(ConstGeneratorTest, ReturnsConstant)
 {
@@ -163,7 +158,7 @@ TEST(RandomGeneratorTest, ValuesInRange)
 
 TEST(RandomGeneratorTest, SwapsMinMaxIfReversed)
 {
-    RandomGenerator gen(10, -10);   // нарочно наоборот
+    RandomGenerator gen(10, -10);
     for (int i = 0; i < 100; i++)
     {
         int v = gen.generate();
@@ -181,13 +176,9 @@ TEST(InputGeneratorTest, ReadsFromStream)
     EXPECT_EQ(gen.generate(), 30);
 }
 
-// Task1: заменить максимальный элемент каждой строки нулем
 
 TEST(Task1Test, SimpleCase)
 {
-    // Строка 0: максимум 5 (col 1) -> 0
-    // Строка 1: максимум 9 (col 0) -> 0
-    // Строка 2: максимум 8 (col 2) -> 0
     Matrix m(3, 3);
     int data[3][3] =
     {
@@ -218,7 +209,6 @@ TEST(Task1Test, SimpleCase)
 
 TEST(Task1Test, FirstMaxInRowIsReplaced)
 {
-    // Максимум 7 встречается дважды в строке; заменяется первый
     Matrix m(1, 4);
     m[0][0] = 7; m[0][1] = 1; m[0][2] = 7; m[0][3] = 2;
 
@@ -234,7 +224,6 @@ TEST(Task1Test, FirstMaxInRowIsReplaced)
 
 TEST(Task1Test, NegativeMaximum)
 {
-    // Все отрицательные: максимум -1 в col 1
     Matrix m(1, 3);
     m[0][0] = -5; m[0][1] = -1; m[0][2] = -3;
 
@@ -288,11 +277,9 @@ TEST(Task1Test, EmptyMatrixReturnsEmpty)
     EXPECT_EQ(result.getColumns(), 0u);
 }
 
-// Task2: вставить перед строками, первый элемент которых делится на 3, строку из нулей
 
 TEST(Task2Test, SimpleCase)
 {
-    // Первые элементы: 3 (делится), 1 (нет), 6 (делится)
     Matrix m(3, 2);
     m[0][0] = 3; m[0][1] = 4;
     m[1][0] = 1; m[1][1] = 2;
@@ -302,7 +289,6 @@ TEST(Task2Test, SimpleCase)
     Task2Exercise task(m, dummyGen);
     Matrix result = task.solve();
 
-    // Ожидается: 0-строка, 3 4, 1 2, 0-строка, 6 8
     EXPECT_EQ(result.getRows(), 5u);
     EXPECT_EQ(result.getColumns(), 2u);
 
@@ -347,7 +333,6 @@ TEST(Task2Test, AllRowsInserted)
 
 TEST(Task2Test, ZeroIsDivisibleByThree)\
 {
-    // 0 % 3 == 0 -> строка из нулей вставляется
     Matrix m(1, 2);
     m[0][0] = 0; m[0][1] = 5;
 
@@ -362,7 +347,6 @@ TEST(Task2Test, ZeroIsDivisibleByThree)\
 
 TEST(Task2Test, NegativeDivisibleByThree)
 {
-    // -6 % 3 == 0 -> вставляется
     Matrix m(1, 2);
     m[0][0] = -6; m[0][1] = 7;
 
