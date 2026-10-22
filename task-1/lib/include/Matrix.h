@@ -135,5 +135,5 @@ public:
 	 * @brief Заполнение массива, используя абстрактный класс Generator
 	 * @param generator - ссылка на генератор
 	 */
-	void fillArray(Generator& generator);
+	void fillArray(const Generator& generator);
 };
