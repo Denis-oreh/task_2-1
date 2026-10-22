@@ -139,7 +139,7 @@ TEST(MatrixIO, InputFailsOnBadData)
 
 TEST(ConstGeneratorTest, ReturnsConstant)
 {
-    ConstGenerator gen(42);
+    const ConstGenerator gen(42);
     EXPECT_EQ(gen.generate(), 42);
     EXPECT_EQ(gen.generate(), 42);
     EXPECT_EQ(gen.generate(), 42);
@@ -147,7 +147,7 @@ TEST(ConstGeneratorTest, ReturnsConstant)
 
 TEST(RandomGeneratorTest, ValuesInRange)
 {
-    RandomGenerator gen(-10, 10);
+    const RandomGenerator gen(-10, 10);
     for (int i = 0; i < 1000; i++)
     {
         int v = gen.generate();
@@ -158,7 +158,7 @@ TEST(RandomGeneratorTest, ValuesInRange)
 
 TEST(RandomGeneratorTest, SwapsMinMaxIfReversed)
 {
-    RandomGenerator gen(10, -10);
+    const RandomGenerator gen(10, -10);
     for (int i = 0; i < 100; i++)
     {
         int v = gen.generate();
@@ -170,7 +170,7 @@ TEST(RandomGeneratorTest, SwapsMinMaxIfReversed)
 TEST(InputGeneratorTest, ReadsFromStream)
 {
     std::istringstream is("10 20 30");
-    InputGenerator gen(is);
+    const InputGenerator gen(is);
     EXPECT_EQ(gen.generate(), 10);
     EXPECT_EQ(gen.generate(), 20);
     EXPECT_EQ(gen.generate(), 30);
@@ -180,7 +180,7 @@ TEST(InputGeneratorTest, ReadsFromStream)
 TEST(Task1Test, SimpleCase)
 {
     Matrix m(3, 3);
-    int data[3][3] =
+    const int data[3][3] =
     {
         {1, 5, 3},
         {9, 2, 4},
@@ -190,9 +190,9 @@ TEST(Task1Test, SimpleCase)
         for (size_t j = 0; j < 3; j++)
             m[i][j] = data[i][j];
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task1_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result[0][0], 1);
     EXPECT_EQ(result[0][1], 0);
@@ -212,9 +212,9 @@ TEST(Task1Test, FirstMaxInRowIsReplaced)
     Matrix m(1, 4);
     m[0][0] = 7; m[0][1] = 1; m[0][2] = 7; m[0][3] = 2;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task1_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result[0][0], 0);
     EXPECT_EQ(result[0][1], 1);
@@ -227,9 +227,9 @@ TEST(Task1Test, NegativeMaximum)
     Matrix m(1, 3);
     m[0][0] = -5; m[0][1] = -1; m[0][2] = -3;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task1_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result[0][0], -5);
     EXPECT_EQ(result[0][1], 0);
@@ -243,9 +243,9 @@ TEST(Task1Test, SingleColumn)
     m[1][0] = 9;
     m[2][0] = 2;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task1_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result[0][0], 0);
     EXPECT_EQ(result[1][0], 0);
@@ -258,7 +258,7 @@ TEST(Task1Test, OriginalIsNotModified)
     m[0][0] = 1; m[0][1] = 2;
     m[1][0] = 3; m[1][1] = 4;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task1_Exercise task(m, dummyGen);
     task.solve();
 
@@ -269,9 +269,9 @@ TEST(Task1Test, OriginalIsNotModified)
 TEST(Task1Test, EmptyMatrixReturnsEmpty)
 {
     Matrix m;
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task1_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 0u);
     EXPECT_EQ(result.getColumns(), 0u);
@@ -285,9 +285,9 @@ TEST(Task2Test, SimpleCase)
     m[1][0] = 1; m[1][1] = 2;
     m[2][0] = 6; m[2][1] = 8;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task2_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 5u);
     EXPECT_EQ(result.getColumns(), 2u);
@@ -305,9 +305,9 @@ TEST(Task2Test, NoRowsInserted)
     m[0][0] = 1; m[0][1] = 2;
     m[1][0] = 2; m[1][1] = 4;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task2_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 2u);
     EXPECT_EQ(result[0][0], 1);
@@ -320,9 +320,9 @@ TEST(Task2Test, AllRowsInserted)
     m[0][0] = 3; m[0][1] = 1;
     m[1][0] = 9; m[1][1] = 2;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task2_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 4u);
     EXPECT_EQ(result[0][0], 0);
@@ -336,9 +336,9 @@ TEST(Task2Test, ZeroIsDivisibleByThree)
     Matrix m(1, 2);
     m[0][0] = 0; m[0][1] = 5;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task2_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 2u);
     EXPECT_EQ(result[0][0], 0); EXPECT_EQ(result[0][1], 0);
@@ -350,9 +350,9 @@ TEST(Task2Test, NegativeDivisibleByThree)
     Matrix m(1, 2);
     m[0][0] = -6; m[0][1] = 7;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task2_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    const Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 2u);
     EXPECT_EQ(result[0][0], 0); EXPECT_EQ(result[0][1], 0);
@@ -365,7 +365,7 @@ TEST(Task2Test, OriginalIsNotModified)
     m[0][0] = 3; m[0][1] = 1;
     m[1][0] = 1; m[1][1] = 2;
 
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task2_Exercise task(m, dummyGen);
     task.solve();
 
@@ -377,9 +377,9 @@ TEST(Task2Test, OriginalIsNotModified)
 TEST(Task2Test, EmptyMatrixReturnsEmpty)
 {
     Matrix m;
-    RandomGenerator dummyGen(0, 0);
+    const RandomGenerator dummyGen(0, 0);
     Task2_Exercise task(m, dummyGen);
-    Matrix result = task.solve();
+    conts Matrix result = task.solve();
 
     EXPECT_EQ(result.getRows(), 0u);
     EXPECT_EQ(result.getColumns(), 0u);
