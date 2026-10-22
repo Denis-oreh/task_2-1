@@ -15,7 +15,7 @@ public:
 	 * @param src - ссылка на матрицу
 	 * @param gen - ссылка на генератор
 	 */
-	Task2_Exercise(Matrix& src, const Generator& gen);
+	Task2_Exercise(const Matrix& src, const Generator& gen);
 
 	/**
 	 * @brief Перегруженный деструктор
@@ -26,5 +26,5 @@ public:
 	 * @brief Выполнить задание 2
 	 * @return Выполненное задание (новая матрица)
 	 */
-	Matrix solve() override;
+	Matrix solve() const override;
 };
