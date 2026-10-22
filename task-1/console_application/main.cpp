@@ -68,11 +68,11 @@ int main(void) {
 
 size_t getPos(const char* message)
 {
-	size_t value = 0;
+	long long value = 0;
 	std::cout << message << std::endl;
 	if (std::cin >> value && value > 0)
 	{
-		return value;
+		return static_cast<size_t>(value);
 	}
 	std::cerr << "Некорректный ввод (введено не целое положительное число)" << std::endl;
 	std::exit(1);
