@@ -2,7 +2,7 @@
 
 #include "../include/Task2Exercise.h"
 
-Task2Exercise::Task2Exercise(Matrix& src, Generator& gen) : Exercise(src, gen) {}
+Task2Exercise::Task2Exercise(Matrix& src, const Generator& gen) : Exercise(src, gen) {}
 
 Matrix Task2Exercise::solve()
 {
@@ -11,7 +11,7 @@ Matrix Task2Exercise::solve()
 
 	if (rows == 0 || columns == 0) { return Matrix(); }
 
-	// Определяем, перед какими строками нужно вставить строку из нулей
+	// ГЋГЇГ°ГҐГ¤ГҐГ«ГїГҐГ¬, ГЇГҐГ°ГҐГ¤ ГЄГ ГЄГЁГ¬ГЁ Г±ГІГ°Г®ГЄГ Г¬ГЁ Г­ГіГ¦Г­Г® ГўГ±ГІГ ГўГЁГІГј Г±ГІГ°Г®ГЄГі ГЁГ§ Г­ГіГ«ГҐГ©
 	std::vector<bool> insertBefore(rows, false);
 	for (size_t i = 0; i < rows; i++)
 	{
@@ -21,7 +21,7 @@ Matrix Task2Exercise::solve()
 		}
 	}
 
-	// Считаем итоговое количество строк
+	// Г‘Г·ГЁГІГ ГҐГ¬ ГЁГІГ®ГЈГ®ГўГ®ГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±ГІГ°Г®ГЄ
 	size_t newRows = rows;
 	for (size_t i = 0; i < rows; i++)
 	{
@@ -38,7 +38,7 @@ Matrix Task2Exercise::solve()
 	{
 		if (insertBefore[i])
 		{
-			// Вставляем строку из нулей (конструктор уже заполнил нулями)
+			// Г‚Г±ГІГ ГўГ«ГїГҐГ¬ Г±ГІГ°Г®ГЄГі ГЁГ§ Г­ГіГ«ГҐГ© (ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГіГ¦ГҐ Г§Г ГЇГ®Г«Г­ГЁГ« Г­ГіГ«ГїГ¬ГЁ)
 			r++;
 		}
 		for (size_t c = 0; c < columns; c++)
