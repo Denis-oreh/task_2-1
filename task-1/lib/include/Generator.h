@@ -15,5 +15,5 @@ public:
 	 * @brief Виртуальный "генератор" значений массива
 	 * @return Целочисленное значение для ячейки массива
 	 */
-	virtual int generate() = 0;
+	virtual int generate() const = 0;
 };
