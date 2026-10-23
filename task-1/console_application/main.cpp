@@ -51,7 +51,8 @@ void runTask(Matrix& matrix, const Generator& generator);
  * @brief Точка входа в программу
  * @return 0, если программа выполнена успешно
  */
-int main(void) {
+int main(void)
+{
 	const size_t rows = getPos("Введите количество строк:");
 	const size_t columns = getPos("Введите количество столбцов:");
 
