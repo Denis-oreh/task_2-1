@@ -36,6 +36,10 @@ Matrix Task2_Exercise::solve() const
 	{
 		if (insertBefore[i])
 		{
+			for (size_t c = 0; c < columns; c++)
+			{
+				result[r][c] = 0;
+			}
 			r++;
 		}
 		for (size_t c = 0; c < columns; c++)
