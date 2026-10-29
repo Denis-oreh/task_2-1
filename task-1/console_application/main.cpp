@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <memory>
+#include <windows.h>
 
 #include "../lib/include/Matrix.h"
 #include "../lib/include/RandomGenerator.h"
@@ -53,6 +54,8 @@ void runTask(Matrix& matrix, const Generator& generator);
  */
 int main(void)
 {
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
 	const size_t rows = getPos("Введите количество строк:");
 	const size_t columns = getPos("Введите количество столбцов:");
 
