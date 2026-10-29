@@ -3,7 +3,7 @@
 #include "../include/RandomGenerator.h"
 
 RandomGenerator::RandomGenerator(const int minVal, const int maxVal)
-	: minValue(minVal), maxValue(maxVal), engine(std::random_device{}()), distribution(0, 0)
+	: minValue(minVal), maxValue(maxVal), engine(std::random_device{}()), distribution(0, 1)
 {
 	if (minValue > maxValue)
 	{
