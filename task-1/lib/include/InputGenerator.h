@@ -13,7 +13,7 @@ private:
 	/**
 	 * @brief поток ввода
 	 */
-	mutable std::istream& input;
+	std::istream& input;
 
 public:
 	/**
