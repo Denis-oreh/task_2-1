@@ -153,14 +153,14 @@ void runTask(Matrix& matrix, const Generator& generator)
 	{
 		case task1_choice:
 			{
-			Task1_Exercise task(matrix, generator);
+			Task1_Exercise task(matrix);
 			const Matrix result = task.solve();
 			std::cout << "Результат:\n" << result.toString() << std::endl;
 			break;
 		}
 		case task2_choice:
 			{
-			Task2_Exercise task(matrix, generator);
+			Task2_Exercise task(matrix);
 			const Matrix result = task.solve();
 			std::cout << "Результат:\n" << result.toString() << std::endl;
 			break;
