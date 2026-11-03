@@ -72,9 +72,13 @@ int main(void)
 
 size_t getPos(const char* message)
 {
-	long long value = 0;
-	std::cout << message << std::endl;
-	if (std::cin >> value && value > 0)
+    if (message == nullptr) 
+    {
+        message = "Введите целое положительное число: ";
+    }
+    long long value = 0;
+    std::cout << message << std::endl;
+    if (std::cin >> value && value > 0)
 	{
 		return static_cast<size_t>(value);
 	}
@@ -84,17 +88,25 @@ size_t getPos(const char* message)
 
 int getInt(const char* message)
 {
-	int value = 0;
-	std::cout << message << std::endl;
-	if (std::cin >> value) return value;
+    if (message == nullptr) 
+    {
+        message = "Введите целое число: ";
+    }
+    int value = 0;
+    std::cout << message << std::endl;
+    if (std::cin >> value) return value;
 	std::cerr << "Некорректный ввод (введено не целое число)" << std::endl;
 	std::exit(1);
 }
 
 std::unique_ptr<Generator> chooseGenerator(const char* message)
 {
-	std::cout << message << std::endl;
-	std::cout << random_fill << " - случайными числами\n"
+    if (message == nullptr) 
+    {
+        message = "Выберите тип заполнения массива: ";
+    }
+    std::cout << message << std::endl;
+    std::cout << random_fill << " - случайными числами\n"
 		<< const_fill << " - одинаковым числом (константой)\n"
 		<< input_fill << " - ввод с клавиатуры\n" << std::endl;
 	const int var = getInt("");
