@@ -2,7 +2,7 @@
 
 #include "../include/Task2_Exercise.h"
 
-Task2_Exercise::Task2_Exercise(const Matrix& src) : Exercise(src, gen) {}
+Task2_Exercise::Task2_Exercise(const Matrix& src) : Exercise(src) {}
 
 Matrix Task2_Exercise::solve() const
 {
