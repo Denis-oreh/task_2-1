@@ -115,8 +115,16 @@ std::unique_ptr<Generator> chooseGenerator(const char* message)
 		case random_fill:
 			{
 			const int minVal = getInt("Введите минимум диапазона:");
-			const int maxVal = getInt("Введите максимум диапазона:");
-			return std::make_unique<RandomGenerator>(minVal, maxVal);
+    		const int maxVal = getInt("Введите максимум диапазона:");
+    
+    		if (minVal > maxVal) 
+    		{
+        		std::cerr << "Ошибка: минимум не может быть больше максимума!" << std::endl;
+        		std::exit(1); 
+    		}
+
+    		auto generator = std::make_unique<RandomGenerator>(minVal, maxVal);
+    		return generator;
 		}
 		case const_fill:
 			{
