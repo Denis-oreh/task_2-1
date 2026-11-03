@@ -35,7 +35,7 @@ public:
 	 * @param minVal - минимальное значение диапазона
 	 * @param maxVal - максимальное значение диапазона
 	 */
-	RandomGenerator(int minVal, int maxVal);
+	RandomGenerator(const int minVal, const int maxVal);
 
 	/**
 	 * @brief Перегруженный деструктор
