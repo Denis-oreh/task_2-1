@@ -62,7 +62,14 @@ int main(void)
 	Matrix matrix(rows, columns);
 	
 	const auto generator = chooseGenerator("Выберите тип заполнения массива:");
-	matrix.fillArray(*generator);
+	
+	for (size_t i = 0; i < rows; i++) 
+	{
+		for (size_t j = 0; j < columns; j++) 
+		{
+			matrix[i][j] = generator->generate();
+		}
+	}
 
 	std::cout << "Полученная матрица:\n" << matrix.toString() << std::endl;
 
