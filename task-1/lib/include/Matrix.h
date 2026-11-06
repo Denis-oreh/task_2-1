@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-#include "Generator.h"
-
 /**
  * @brief Класс Matrix(массив) на std::vector
  */
@@ -130,10 +128,4 @@ public:
 	 * @return число столбцов
 	 */
 	size_t getColumns() const noexcept;
-
-	/**
-	 * @brief Заполнение массива, используя абстрактный класс Generator
-	 * @param generator - ссылка на генератор
-	 */
-	void fillArray(const Generator& generator);
 };
