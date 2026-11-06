@@ -116,13 +116,3 @@ std::istream& operator>>(std::istream& is, Matrix& M)
 	M = std::move(temp);
 	return is;
 }
-
-void Matrix::fillArray(const Generator& generator)
-{
-	for (size_t i = 0; i < rows; i++) {
-		for (size_t j = 0; j < columns; j++)
-		{
-			arr[i][j] = generator.generate();
-		}
-	}
-}
