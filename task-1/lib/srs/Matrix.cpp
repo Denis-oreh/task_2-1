@@ -39,12 +39,12 @@ size_t Matrix::getColumns() const noexcept { return columns; }
 
 int* Matrix::operator[](size_t row_index)
 {
-	return arr[row_index].data();
+	return arr.at(row_index).data();
 }
 
 const int* Matrix::operator[](const size_t row_index) const
 {
-	return arr[row_index].data();
+	return arr.at(row_index).data();
 }
 
 std::string Matrix::toString() const
