@@ -57,7 +57,7 @@ int main()
     e1.addPreviousWorkplace(PreviousWorkplace("ООО Ромашка", "Junior", "2010-2013"));
     e1.addPreviousWorkplace(PreviousWorkplace("ЗАО Лютик", "Middle", "2013-2020"));
 
-    Person child("Иванов Пётр Иванович", "29.10.2007");
+    Employee child("Иванов Пётр Иванович", "29.10.2007", Position("Нет"), Department("Нет"), 0.0);
     const int childId = child.getId();
     e1.addChildId(childId);
     hr.addPerson(child);
@@ -75,8 +75,8 @@ int main()
     hr.addEmployee(e3);
 
     std::vector<std::unique_ptr<Person>> staff;
-    staff.push_back(std::make_unique<Person>(
-        "Смирнов Олег Игоревич", "05.05.1990"));
+    staff.push_back(std::make_unique<Employee>(
+        "Смирнов Олег Игоревич", "05.05.1990", Position("Стажёр"), Department("IT"), 1.0));
     staff.push_back(std::make_unique<Employee>(
         "Кузнецов Артём Сергеевич", "17.08.1982",
         Position("Программист"), Department("IT"), 1.0));
