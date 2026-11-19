@@ -2,32 +2,11 @@
 #include <vector>
 #include <string>
 #include <memory>
-
 #include "HRDepartment.h"
 
 #ifdef _WIN32
 #include <windows.h>
 #endif
-
-/**
- * @brief Печать набора строк с заголовком
- */
-static void printLines(const std::vector<std::string>& lines, const std::string& title)
-{
-    std::cout << "\n      <" << title << ">\n";
-    std::cout << "\n";
-    if (lines.empty())
-    {
-        std::cout << "(пусто)\n";
-        return;
-    }
-    for (const auto& line : lines)
-    {
-        std::cout << line << "\n";
-    }
-    std::cout << "\n";
-    std::cout << "\n";
-}
 
 /**
  * @brief Точка входа в программу
@@ -40,70 +19,72 @@ int main()
     SetConsoleOutputCP(65001);
 #endif
 
-    HRDepartment hr;
+	HRDepartment hr;
 
-    hr.addDepartment(Department("IT"));
-    hr.addDepartment(Department("Бухгалтерия"));
-    hr.addDepartment(Department("HR"));
+	hr.addDepartment(Department("IT"));
+	hr.addDepartment(Department("Бухгалтерия"));
+	hr.addDepartment(Department("HR"));
 
-    hr.addPosition(Position("Программист"));
-    hr.addPosition(Position("Бухгалтер"));
-    hr.addPosition(Position("HR-менеджер"));
+	hr.addPosition(Position("Программист"));
+	hr.addPosition(Position("Бухгалтер"));
+	hr.addPosition(Position("HR-менеджер"));
 
-    Employee e1("Иванов Иван Иванович", "12.03.1985",
-        Position("Программист"), Department("IT"), 1.0);
-    const int e1Id = e1.getId();
-    e1.setFlags(false, true, false, true);
-    e1.addPreviousWorkplace(PreviousWorkplace("ООО Ромашка", "Junior", "2010-2013"));
-    e1.addPreviousWorkplace(PreviousWorkplace("ЗАО Лютик", "Middle", "2013-2020"));
+	Employee e1("Иванов Иван Иванович", "12.03.1985",  Position("Программист"), Department("IT"), 1.0);
+	int e1Id = e1.getId();
+	e1.setFlags(false, true, false, true);
+	e1.addPreviousWorkplace(PreviousWorkplace("ООО Ромашка", "Junior", "2010-2013"));
+	e1.addPreviousWorkplace(PreviousWorkplace("ЗАО лютик", "Middle", "2013-2020"));
+	
+	Employee child("Иванов Пётр Иванович", "29.10.2007", Position("Нет"), Department("Нет"), 0.0);
+	int childId = child.getId();
+	e1.addChildId(childId);
+	
+	hr.addPerson(static_cast<const Person&>(child));
+	hr.addEmployee(e1);
 
-    Employee child("Иванов Пётр Иванович", "29.10.2007", Position("Нет"), Department("Нет"), 0.0);
-    const int childId = child.getId();
-    e1.addChildId(childId);
-    hr.addPerson(child);
-    hr.addEmployee(e1);
+	Employee e2("Петрова Анна Петровна", "10.12.1960", Position("Бухгалтер"), Department("Бухгалтерия"), 0.5);
+	e2.setFlags(true, false, true, false);
+	hr.addEmployee(e2);
 
-    Employee e2("Петрова Анна Петровна", "10.12.1960",
-        Position("Бухгалтер"), Department("Бухгалтерия"), 0.5);
-    e2.setFlags(true, false, true, false);
-    hr.addEmployee(e2);
+	Employee e3("Сидорова Мария Петровна", "21.11.1986", Position("Программист"), Department("IT"), 1.0);
+	e3.addChildId(childId);
+	e3.setFlags(false, false, false, true);
+	hr.addEmployee(e3);
 
-    Employee e3("Сидорова Мария Петровна", "21.11.1986",
-        Position("Программист"), Department("IT"), 1.0);
-    e3.addChildId(childId);
-    e3.setFlags(false, false, false, true);
-    hr.addEmployee(e3);
+	std::cout << "Все люди:" << std::endl;
+	hr.printAll();
 
-    std::vector<std::unique_ptr<Person>> staff;
-    staff.push_back(std::make_unique<Employee>(
-        "Смирнов Олег Игоревич", "05.05.1990", Position("Стажёр"), Department("IT"), 1.0));
-    staff.push_back(std::make_unique<Employee>(
-        "Кузнецов Артём Сергеевич", "17.08.1982",
-        Position("Программист"), Department("IT"), 1.0));
-    staff.push_back(std::make_unique<Employee>(
-        "Волкова Елена Ивановна", "02.02.1975",
-        Position("Бухгалтер"), Department("Бухгалтерия"), 0.5));
+	std::cout << "\nСотрудники-программисты:" << std::endl;
+	hr.printByPosition("Программист");
 
-    std::cout << "\n     <=Полиморфная коллекция базового типа (Person)=>\n";
-    std::cout << "\n";
-    for (const auto& person : staff)
-    {
-        std::cout << person->getInfo() << "\n";
-    }
-    std::cout << "\n";
+	std::cout << "\nСотрудники со ставкой 0.5:" << std::endl;
+	hr.printByRate(0.5);
 
-    printLines(hr.getAllInfo(), "Все люди");
-    printLines(hr.getByPosition("Программист"), "Сотрудники-программисты");
-    printLines(hr.getByRate(0.5), "Сотрудники со ставкой 0.5");
-    printLines(hr.getWithChildren(), "Сотрудники с детьми");
-    printLines(hr.getPensioners(), "Пенсионеры");
-    printLines(hr.getDisabled(), "Сотрудники с инвалидностью");
-    printLines(hr.getOnVacation(), "В отпуске");
-    printLines(hr.getOnMaternityLeave(), "В декретном отпуске");
-    printLines(hr.getPositionInfo(), "Информация о должностях");
-    printLines(hr.getPreviousWorkplacesInfo(), "Предыдущие места работы");
-    printLines(hr.getByFullName("Петрова Анна Петровна"), "Поиск по ФИО: Петрова Анна Петровна");
-    printLines(hr.getChildrenOf(e1Id), "Дети сотрудника Иванов Иван Иванович");
+	std::cout << "\nСотрудники с детьми:" << std::endl;
+	hr.printWithChildren();
 
-    return 0;
+	std::cout << "\nПенсионеры:" << std::endl;
+	hr.printPensioners();
+
+	std::cout << "\nСотрудники с инвалидностью:" << std::endl;
+	hr.printDisabled();
+
+	std::cout << "\nВ отпуске:" << std::endl;
+	hr.printOnVacation();
+
+	std::cout << "\nВ декретном отпуске:" << std::endl;
+	hr.printOnMaternityLeave();
+
+	std::cout << "\nИнформация о должностях:" << std::endl;
+	hr.printPositionInfo();
+
+	std::cout << "\nПредыдущие места работы:" << std::endl;
+	hr.printPreviousWorkplaces();
+
+	std::cout << "\nПоиск по имени: Петрова Анна Петровна" << std::endl;
+	hr.printByFullName("Петрова Анна Петровна");
+
+	hr.printChildrenOf(e1Id);
+
+	return 0;
 }
