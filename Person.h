@@ -68,5 +68,5 @@ class Person
 		/**
 		 * @brief виртуальный метод получения информации
 		 */
-		virtual std::string getInfo() const;
+		virtual std::string getInfo() const = 0;
 };
