@@ -9,6 +9,22 @@
 #endif
 
 /**
+ * @brief Функция для вывода вектора строк в консоль
+ */
+void printInfo(const std::vector<std::string>& info)
+{
+    if (info.empty())
+	{
+        std::cout << "(пусто)" << std::endl;
+        return;
+    }
+    for (const auto& line : info)
+	{
+        std::cout << line << std::endl;
+    }
+}
+
+/**
  * @brief Точка входа в программу
  * @return 0, если программа выполнена корректно
  */
@@ -52,39 +68,40 @@ int main()
 	hr.addEmployee(e3);
 
 	std::cout << "Все люди:" << std::endl;
-	hr.printAll();
+	printInfo(hr.getAllInfo());
 
 	std::cout << "\nСотрудники-программисты:" << std::endl;
-	hr.printByPosition("Программист");
+	printInfo(hr.getByPosition("Программист"));
 
 	std::cout << "\nСотрудники со ставкой 0.5:" << std::endl;
-	hr.printByRate(0.5);
+	printInfo(hr.getByRate(0.5));
 
 	std::cout << "\nСотрудники с детьми:" << std::endl;
-	hr.printWithChildren();
+	printInfo(hr.getWithChildren());
 
 	std::cout << "\nПенсионеры:" << std::endl;
-	hr.printPensioners();
+	printInfo(hr.getPensioners());
 
 	std::cout << "\nСотрудники с инвалидностью:" << std::endl;
-	hr.printDisabled();
+	printInfo(hr.getDisabled());
 
 	std::cout << "\nВ отпуске:" << std::endl;
-	hr.printOnVacation();
+	printInfo(hr.getOnVacation());
 
 	std::cout << "\nВ декретном отпуске:" << std::endl;
-	hr.printOnMaternityLeave();
+	printInfo(hr.getOnMaternityLeave());
 
 	std::cout << "\nИнформация о должностях:" << std::endl;
-	hr.printPositionInfo();
+	printInfo(hr.getPositionInfo());
 
 	std::cout << "\nПредыдущие места работы:" << std::endl;
-	hr.printPreviousWorkplaces();
+	printInfo(hr.getPreviousWorkplacesInfo());
 
 	std::cout << "\nПоиск по имени: Петрова Анна Петровна" << std::endl;
-	hr.printByFullName("Петрова Анна Петровна");
+	printInfo(hr.getByFullName("Петрова Анна Петровна"));
 
-	hr.printChildrenOf(e1Id);
+	std::cout << "\nДети сотрудника:" << std::endl;
+	printInfo(hr.getChildrenOf(e1Id));
 
 	return 0;
 }
